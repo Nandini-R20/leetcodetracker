@@ -1,0 +1,15 @@
+// Last updated: 8/11/2026, 12:26:05 PM
+class Solution {
+    public boolean searchMatrix(int[][] arr, int target) {
+        int i = 0, j = arr[0].length - 1;
+        while (i < arr.length && j >= 0) {
+            if (arr[i][j] == target)
+                return true;
+            else if (arr[i][j] < target)
+                i++;
+            else
+                j--;
+        }
+        return false;
+    }
+}
