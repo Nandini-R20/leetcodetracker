@@ -1,0 +1,17 @@
+# Last updated: 9/2/2026, 12:44:02 PM
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid):
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+
+        dp = [0] * n
+        dp[0] = 1
+
+        for i in range(m):
+            for j in range(n):
+                if obstacleGrid[i][j] == 1:
+                    dp[j] = 0
+                elif j > 0:
+                    dp[j] += dp[j - 1]
+
+        return dp[-1]
