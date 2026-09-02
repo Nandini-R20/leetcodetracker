@@ -1,0 +1,5 @@
+-- Last updated: 9/2/2026, 12:41:12 PM
+SELECT p.firstName, p.lastName, a.city, a.state
+FROM Person p
+LEFT JOIN Address a
+ON p.personId = a.personId;
