@@ -1,0 +1,27 @@
+# Last updated: 9/2/2026, 12:45:06 PM
+class Solution:
+    def combinationSum(self, candidates, target):
+        result = []
+
+        def backtrack(start, remaining, current):
+            if remaining == 0:
+                result.append(current[:])
+                return
+
+            if remaining < 0:
+                return
+
+            for i in range(start, len(candidates)):
+                current.append(candidates[i])
+
+                backtrack(
+                    i,
+                    remaining - candidates[i],
+                    current
+                )
+
+                current.pop()
+
+        backtrack(0, target, [])
+
+        return result
