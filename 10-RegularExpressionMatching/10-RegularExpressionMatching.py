@@ -1,0 +1,29 @@
+# Last updated: 9/2/2026, 12:46:02 PM
+class Solution:
+    def isMatch(self, s, p):
+        memo = {}
+
+        def dp(i, j):
+            if (i, j) in memo:
+                return memo[(i, j)]
+
+            if j == len(p):
+                return i == len(s)
+
+            first_match = (
+                i < len(s) and
+                (p[j] == s[i] or p[j] == '.')
+            )
+
+            if j + 1 < len(p) and p[j + 1] == '*':
+                result = (
+                    dp(i, j + 2) or
+                    (first_match and dp(i + 1, j))
+                )
+            else:
+                result = first_match and dp(i + 1, j + 1)
+
+            memo[(i, j)] = result
+            return result
+
+        return dp(0, 0)
